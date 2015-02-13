@@ -3,10 +3,19 @@ require "fast"
 class WebhookController < ApplicationController
   def notify
     event = request.headers['X-GitHub-Event']
-    playload = JSON.parse(request.body.read)  
-    logger.info "Gihub event #{event} is triggered"
+    payload = Payload.new(request.body)
+    repository = payload.repository
+    logger.info "Event #{event} from #{repository["html_url"]} is triggered"
     
-    Fast::EventHandler.handle(event, playload)
+    if Repository.exists?(repository["id"]) then
+    
+    else
+      Repository.create(
+        :id => repository["id"],
+      )
+    end
+
+    Fast::EventHandler.handle(event, payload)
     
     success_render(200)
   end
