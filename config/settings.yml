@@ -1,0 +1,14 @@
+production: &production 
+  log_path: 'log/fast-ci.server.log'
+  database_config_path: './config/database.yml'
+  
+  jenkins_master:
+    url: 'http://10.175.101.119:8080/jenkins/'
+    admin_user: admin
+    admin_password: huawei
+
+development:
+  <<: *production
+
+test:
+  <<: *production

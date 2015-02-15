@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require File.expand_path('../../lib/settings', __FILE__)
+
 module FastCiServer
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -22,5 +24,14 @@ module FastCiServer
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # Disable the asset pipeline.
+    config.assets.enabled = false
+
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    config.paths.add 'config/database', with: Settings.database_config_path
+    config.paths.add 'log', with: Settings.log_path
   end
 end
