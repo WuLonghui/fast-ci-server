@@ -1,6 +1,8 @@
 module Fast
   module Event
     class Base  
+      extend Fast::EventDiscovery
+          
       attr_reader :repository
       attr_reader :job
       attr_reader :payload

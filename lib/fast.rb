@@ -1,6 +1,7 @@
 require "erb"
 require 'jenkins_api_client'
 
+require "fast/event_discovery"
 require "fast/event_handler"
 require "fast/base_event"
 
