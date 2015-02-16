@@ -2,8 +2,11 @@ module Fast
   class JenkinsClient
     
     JOB_CONFIG_TEMPLATE = "job_config.xml.erb"
-
+    
+    attr_reader :server_url
+    
     def initialize(options)
+      @server_url = options[:server_url]
       @client = JenkinsApi::Client.new(options)
     end
     
@@ -80,6 +83,10 @@ module Fast
         build["time"] = build_details["id"] 
       end
       builds
+    end
+    
+    def build_job(job_name, params={}, opts = {})
+      @client.job.build(job_name, params, opts)
     end
     
     def add_user(username, password)

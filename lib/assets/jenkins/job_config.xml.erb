@@ -7,6 +7,15 @@
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.5">
       <projectUrl><%= job_options[:git_url] %></projectUrl>
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>git_branch</name>
+          <description></description>
+          <defaultValue></defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
   </properties>
   <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.0">
     <configVersion>2</configVersion>
@@ -18,7 +27,7 @@
     </userRemoteConfigs>
     <branches>
       <hudson.plugins.git.BranchSpec>
-        <name><%= job_options[:git_branch] || "develop" %></name>
+        <name>${git_branch}</name>
       </hudson.plugins.git.BranchSpec>
     </branches>
     <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
@@ -35,7 +44,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>fast build</command>
+      <command>fast-build</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>

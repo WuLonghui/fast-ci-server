@@ -27,7 +27,7 @@ class WebhookController < ApplicationController
       
       job = Job.create(
         :name => job_name,
-        :server_url => jenkins_url,
+        :server_url => jenkins_client.server_url,
       )
       
       repository = Repository.create(
