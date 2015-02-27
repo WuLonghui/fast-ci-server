@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150215104606) do
 
   create_table "repositories", force: :cascade do |t|
     t.string   "full_name"
-    t.string   "html_url"
+    t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

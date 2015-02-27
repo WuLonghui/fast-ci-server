@@ -37,7 +37,7 @@ class WebhookController < ApplicationController
       repository = Repository.create(
         :id => payload.repository.id,
         :full_name => payload.repository.full_name,
-        :html_url => payload.repository.url,
+        :url => payload.repository.url,
         :job => job
       )
     end
