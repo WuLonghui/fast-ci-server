@@ -27,7 +27,11 @@ class WebhookController < ApplicationController
       job_name = payload.repository.full_name.gsub(/\//, '.')
       logger.info "Create job #{job_name}"
       jenkins_client = Fast.jenkins_client
-      jenkins_client.create_or_update_job(job_name, {:git_url => payload.repository.url})
+      job_options = {
+        :git_url => payload.repository.url,
+        :git_repository => payload.repository.full_name,
+      }
+      jenkins_client.create_or_update_job(job_name, job_options)
       job = Job.create(
         :name => job_name,
         :server_url => jenkins_client.server_url,
