@@ -1,9 +1,11 @@
+require 'uri'
 require "erb"
 require 'jenkins_api_client'
 
 require "fast/event_discovery"
 require "fast/event_handler"
 require "fast/base_event"
+require "fast/payload"
 
 Dir[File.dirname(__FILE__) + '/fast/events/**/*.rb'].each do |file|
   require file
