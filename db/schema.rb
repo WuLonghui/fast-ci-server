@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(version: 20150215104606) do
 
   create_table "jobs", force: :cascade do |t|
-    t.integer  "repository_id"
-    t.string   "name"
-    t.string   "server_url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "repository_id", limit: 4
+    t.string   "name",          limit: 255
+    t.string   "server_url",    limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "repositories", force: :cascade do |t|
-    t.string   "full_name"
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "full_name",  limit: 255
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end

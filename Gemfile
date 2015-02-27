@@ -8,6 +8,7 @@ gem 'rest-client'
 gem 'activerecord'
 gem 'rufus-scheduler'
 gem 'sqlite3'
+gem 'mysql2'
 gem 'jenkins_api_client'
 
 group :production do
