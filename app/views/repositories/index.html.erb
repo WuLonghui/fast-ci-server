@@ -1,0 +1,19 @@
+<h1>Repositories</h1>
+ 
+<table border="1" cellspacing="0" bordercolor="#000000" width = "50%">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Job</th>
+  </tr>
+ 
+<% @repositories.each do |repository| %>
+  <tr>
+    <td><%= repository.id %></td>
+    <td><a href="<%= repository.url %>"><%= repository.full_name %></a></td>
+    <td><a href="<%= repository.job.url %>"><%= repository.job.url %></a></td>
+  </tr>
+<% end %>
+</table>
+ 
+<br>
