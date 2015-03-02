@@ -1,8 +1,8 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  host: localhost
-  username: root
+  host: 127.0.0.1
+  username: fast_ci
   password: huawei
 
 development:
