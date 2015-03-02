@@ -14,10 +14,11 @@ module Fast
       @events.has_key?(event)
     end
     
-    def self.handle(repository, event, playload)
+    def self.handle(repository, event, playload, options={})
       klass = @events[event]
       unless klass.nil?
-        klass.new(repository, playload).handle
+        event = klass.new(repository, playload, options)
+        event.handle if event.handle?
       end
     end
   end

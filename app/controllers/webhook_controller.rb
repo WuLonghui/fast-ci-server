@@ -46,7 +46,12 @@ class WebhookController < ApplicationController
       )
     end
     
-    Fast::EventHandler.handle(repository, event, payload)
+    options = {}
+    [:branches_except, :branches_only].each do |key|
+      options[key] = params[key] if params.include?(key)
+    end
+    
+    Fast::EventHandler.handle(repository, event, payload, options)
     
     success_render(200)
   rescue => err
