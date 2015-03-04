@@ -21,7 +21,7 @@ module Fast
         unless @action == "closed"   
           pr_head_branch = "pr/#{@number}/head"         
           build_params = {
-            :git_branch => @pr_head_branch,
+            :git_branch => pr_head_branch,
             :build_history_info => "PR/#{@number} #{@commit} by #{@committer}",
             :build_history_link => @pull_request["html_url"]
           }
